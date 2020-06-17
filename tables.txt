@@ -1,0 +1,30 @@
+==============================
+car_manufacturer
+==============================
+manufacturer_id (pk)
+manufacturer_name
+==============================
+
+
+==============================
+car_model
+==============================
+model_id (pk)
+model_name
+model_manufacturer <- manufacturer_id (?)
+==============================
+
+
+==============================
+car
+==============================
+car_id (pk)
+car_model <- model_id (?)
+car_manufacturer <- manufacturer_id (?)
+car_type
+car_mileage
+car_year_from
+car_gearbox
+car_color
+car_price
+==============================

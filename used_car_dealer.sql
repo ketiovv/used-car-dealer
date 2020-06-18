@@ -18,7 +18,7 @@ USE used_car_dealer;
 DROP TABLE IF EXISTS car_manufacturer;
 CREATE TABLE car_manufacturer
 (
-    manufacturer_id     TINYINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+    manufacturer_id     INT UNSIGNED NOT NULL AUTO_INCREMENT,
     manufacturer_name   CHAR(25)            NOT NULL,
     manufacturer_origin CHAR(20)            NOT NULL,
     PRIMARY KEY (manufacturer_id)
@@ -142,9 +142,9 @@ VALUES (1, 'Abarth', 'Italy'),
 DROP TABLE IF EXISTS car_model;
 CREATE TABLE car_model
 (
-    model_id              TINYINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+    model_id              INT UNSIGNED NOT NULL AUTO_INCREMENT,
     model_name            CHAR(25)            NOT NULL,
-    model_manufacturer_id TINYINT(3) UNSIGNED NOT NULL,
+    model_manufacturer_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (model_id),
     FOREIGN KEY (model_manufacturer_id) REFERENCES car_manufacturer (manufacturer_id)
 )
@@ -156,7 +156,7 @@ CREATE TABLE car_model
 -- inserting models
 -- -----------------------------------------------------------------------
 
--- id60 - Audi
+-- id6 - Audi
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('A1', 6),
        ('A2', 6),
@@ -176,6 +176,23 @@ VALUES ('A1', 6),
        ('80', 6),
        ('100', 6);
 
+-- id20 - Citroen
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Berlingo', 20),
+       ('C1', 20),
+       ('C2', 20),
+       ('C3', 20),
+       ('C4', 20),
+       ('C5', 20),
+       ('C6', 20),
+       ('C7', 20),
+       ('C8', 20),
+       ('DS3', 20),
+       ('DS4', 20),
+       ('DS5', 20),
+       ('Saxo', 20),
+       ('Xsara Picasso', 20);
+
 -- id70 - Opel
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('Agila', 70),
@@ -192,6 +209,20 @@ VALUES ('Agila', 70),
        ('Vivaro', 70),
        ('Zafira', 70);
 
+-- id89 - Skoda
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Citigo', 89),
+       ('Fabia', 89),
+       ('Felicia', 89),
+       ('Kamiq', 89),
+       ('Karoq', 89),
+       ('Kodiaq', 89),
+       ('Octavia', 89),
+       ('Rapid', 89),
+       ('Scala', 89),
+       ('SuperB', 89),
+       ('Yeti', 89);
+
 -- -----------------------------------------------------------------------
 -- creating a car table
 -- -----------------------------------------------------------------------
@@ -199,8 +230,22 @@ VALUES ('Agila', 70),
 DROP TABLE IF EXISTS car;
 CREATE TABLE car
 (
-    car_id       TINYINT(6) UNSIGNED NULL AUTO_INCREMENT,
-    car_model_id TINYINT(5) UNSIGNED NOT NULL,
+    car_id              INT UNSIGNED                                                           NULL AUTO_INCREMENT,
+    car_model_id        INT UNSIGNED                                                           NOT NULL,
+
+    car_price           INT UNSIGNED                                                           NOT NULL,
+
+    car_type            ENUM ('coupe','hatchback','minivan','pickup','sedan','suv','van','wagon') NOT NULL,
+    car_color           CHAR(20)                                                                  NOT NULL, -- maybe new table?
+
+    car_mileage         INT UNSIGNED                                                       NOT NULL,
+    car_year_from       INT UNSIGNED                                                       NOT NULL,
+
+    car_engine_capacity INT UNSIGNED                                                       NOT NULL,
+    car_fuel            ENUM ('diesel','petrol','petrol-gas','petrol-electric','electric'),
+    car_power           INT UNSIGNED                                                       NOT NULL,
+    car_transmission    ENUM ('automatic','semi-automatic','manual')                              NOT NULL,
+
     PRIMARY KEY (car_id),
     FOREIGN KEY (car_model_id) REFERENCES car_model (model_id)
 )
@@ -212,20 +257,9 @@ CREATE TABLE car
 -- inserting cars
 -- -----------------------------------------------------------------------
 
-INSERT INTO car(car_model_id)
-    VALUES (1),
-           (12),
-           (22),
-           (3),
-           (30),
-           (7),
-           (27),
-           (10),
-           (20),
-           (15),
-           (13),
-           (26),
-           (17);
+INSERT INTO car
+VALUES (1, 31, 5000, 'minivan', 'silver', 215000, 2005, 1997, 'diesel', 90, 'manual'),
+       (2, 44, 7500, 'minivan', 'black', 220000, 2004, 2172, 'diesel', 125, 'manual');
 
 -- -----------------------------------------------------------------------
 -- creating a customer table
@@ -262,7 +296,7 @@ CREATE TABLE deal
 -- tests
 -- -----------------------------------------------------------------------
 
-SELECT car_id as id, manufacturer_name as manufacturer, model_name as model
+SELECT car_id as id, manufacturer_name as manufacturer, model_name as model, car_price as price
 FROM car
          INNER JOIN car_model
                     ON car.car_model_id = car_model.model_id

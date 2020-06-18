@@ -6,21 +6,22 @@ manufacturer_name
 ==============================
 
 
+
 ==============================
 car_model
 ==============================
 model_id (pk)
 model_name
-model_manufacturer <- manufacturer_id (?)
+model_manufacturer <- manufacturer_id
 ==============================
+
 
 
 ==============================
 car
 ==============================
 car_id (pk)
-car_model <- model_id (?)
-car_manufacturer <- manufacturer_id (?)
+car_model_id <- model_id 
 car_type
 car_mileage
 car_year_from
@@ -28,3 +29,26 @@ car_gearbox
 car_color
 car_price
 ==============================
+
+
+
+==============================
+customer
+==============================
+customer_id (pk)
+customer_first_name
+customer_last_name
+customer_pesel
+customer_phone_number
+==============================
+
+
+
+==============================
+deal
+==============================
+deal_id (pk)
+customer_id <- customer_id
+car_id <- car_id
+deal_type
+payment_method

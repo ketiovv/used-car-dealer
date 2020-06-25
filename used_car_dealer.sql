@@ -223,6 +223,242 @@ VALUES ('Citigo', 89),
        ('SuperB', 89),
        ('Yeti', 89);
 
+-- id3 - Alfa Romeo
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('147', 3),
+       ('156', 3),
+       ('159', 3),
+       ('Brera', 3),
+       ('Giulia', 3),
+       ('Giulietta', 3),
+       ('GT', 3),
+       ('Mito', 3),
+       ('Spider', 3),
+       ('Stelvio', 3);
+       
+-- id10 - BMW
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('3GT', 10),
+       ('i3', 10),
+       ('M3', 10),
+       ('M5', 10),
+       ('Seria 1', 10),
+       ('Seria 3', 10),
+       ('Seria 5', 10),
+       ('Seria 7', 10),
+       ('X3', 10),
+       ('X5', 10),
+       ('X6', 10);
+       
+-- id18 - Chevrolet
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Aveo', 18),
+       ('Camaro', 18),
+       ('Captiva', 18),
+       ('Corvette', 18),
+       ('Cruze', 18),
+       ('Kalos', 18),
+       ('Matiz', 18),
+       ('Orlando', 18),
+       ('Spark', 18),
+       ('Trax', 18);
+
+-- id21 - Dacia
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Dokker', 21),
+       ('Duster', 21),
+       ('Lodgy', 21),
+       ('Logan', 21),
+       ('Sandero', 21),
+       ('Sandero Stepway', 21);
+
+-- id28 - Fiat
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('125p', 28),
+       ('500', 28),
+       ('Bravo', 28),
+       ('Cinquecento', 28),
+       ('Doblo', 28),
+       ('Grande Punto', 28),
+       ('Panda', 28),
+       ('Punto', 28),
+       ('Seicento', 28),
+       ('Stilo', 28),
+       ('Tipo', 28);
+       
+-- id29 - Ford
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('C-MAX', 29),
+       ('EcoSport', 29),
+       ('EDGE', 29),
+       ('Fiesta', 29),
+       ('Focus', 29),
+       ('Fusion', 29),
+       ('Galaxy', 29),
+       ('Kuga', 29),
+       ('Mondeo', 29),
+       ('Mustang', 29),
+       ('S-Max', 29);
+
+-- id36 - Honda
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Accord', 36),
+       ('City', 36),
+       ('Civic', 36),
+       ('CR-V', 36),
+       ('FR-V', 36),
+       ('HR-V', 36),
+       ('Insight', 36),
+       ('Jazz', 36),
+       ('Odyssey', 36);
+       
+-- id39 - Hyundai
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Coupe', 39),
+       ('Elantra', 39),
+       ('Getz', 39),
+       ('M5', 39),
+       ('i10', 39),
+       ('i20', 39),
+       ('i30', 39),
+       ('i40', 39),
+       ('ix35', 39),
+       ('Santa Fe', 39),
+       ('Tucson', 39);
+       
+-- id44 - Jeep
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Cherokee', 44),
+       ('Commander', 44),
+       ('Compass', 44),
+       ('Grand Cherokee', 44),
+       ('Liberty', 44),
+       ('Patriot', 44),
+       ('Renegade', 44),
+       ('Wrangler', 44);
+
+-- id45 - Kia
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Carens', 45),
+       ('Ceed', 45),
+       ('Niro', 45),
+       ('Optima', 45),
+       ('Picanto', 45),
+       ('Pro_cee d', 45),
+       ('Rio', 45),
+       ('Sorento', 45),
+       ('Sportage', 45),
+       ('Stonic', 45),
+       ('Venga', 45);
+       
+-- id59 - Mazda
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('2', 59),
+       ('3', 59),
+       ('5', 59),
+       ('6', 59),
+       ('CX-3', 59),
+       ('CX-5', 59),
+       ('CX-7', 59),
+       ('MX-5', 59),
+       ('Premacy', 59);
+       
+-- id61 - Mercedes-Benz
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('CLA', 61),
+       ('CLS', 61),
+       ('GLA', 61),
+       ('GLC', 61),
+       ('GLE', 61),
+       ('Klasa A', 61),
+       ('Klasa B', 61),
+       ('Klasa C', 61),
+       ('Klasa E', 61),
+       ('Klasa S', 61),
+       ('ML', 61);
+       
+-- id68 - Nissan
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Almera', 68),
+       ('Juke', 68),
+       ('Leaf', 68),
+       ('Micra', 68),
+       ('Navara', 68),
+       ('Note', 68),
+       ('Patrol', 68),
+       ('Primera', 68),
+       ('Qashqai', 68),
+       ('Qashqai+2', 68),
+       ('X-Trail', 68);
+       
+-- id74 - Peugot
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('2008', 74),
+       ('206', 74),
+       ('207', 74),
+       ('208', 74),
+       ('3008', 74),
+       ('307', 74),
+       ('308', 74),
+       ('407', 74),
+       ('5008', 74),
+       ('508', 74),
+       ('Partner', 74);
+       
+-- id93 - Suzuki
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Baleno', 93),
+       ('Grand Vitara', 93),
+       ('Ignis', 93),
+       ('Jimny', 93),
+       ('Splash', 93),
+       ('Swift', 93),
+       ('SX4', 93),
+       ('SX4 S-Cross', 93),
+       ('Vitara', 93);
+
+-- id96 - Toyota
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Auris', 96),
+       ('Avensis', 96),
+       ('Aygo', 96),
+       ('C-HR', 96),
+       ('Corolla', 96),
+       ('Corolla Verso', 96),
+       ('Land Cruiser', 96),
+       ('Prius', 96),
+       ('RAV4', 96),
+       ('Verso', 96),
+       ('Yaris', 96);
+
+-- id100 - Volkswagen
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('Caddy', 100),
+       ('Caravelle', 100),
+       ('Golf', 100),
+       ('Golf Plus', 100),
+       ('Jetta', 100),
+       ('Multivan', 100),
+       ('Passat', 100),
+       ('Polo', 100),
+       ('Tiguran', 100),
+       ('Touran', 100),
+       ('Vento', 100);
+       
+ -- id101 - Volvo
+INSERT INTO car_model(model_name, model_manufacturer_id)
+VALUES ('S40', 101),
+       ('S60', 101),
+       ('S80', 101),
+       ('S90', 101),
+       ('V40', 101),
+       ('V50', 101),
+       ('V60', 101),
+       ('V70', 101),
+       ('XC 40', 101),
+       ('XC 60', 101),
+       ('XC 90', 101);
+
 -- -----------------------------------------------------------------------
 -- creating a car table
 -- -----------------------------------------------------------------------
@@ -303,3 +539,4 @@ FROM car
          INNER JOIN car_manufacturer
                     ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id
 ORDER BY car_id;
+

@@ -19,8 +19,8 @@ DROP TABLE IF EXISTS car_manufacturer;
 CREATE TABLE car_manufacturer
 (
     manufacturer_id     INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    manufacturer_name   CHAR(25)            NOT NULL,
-    manufacturer_origin CHAR(20)            NOT NULL,
+    manufacturer_name   VARCHAR(25)  NOT NULL,
+    manufacturer_origin VARCHAR(20)  NOT NULL,
     PRIMARY KEY (manufacturer_id)
 )
     ENGINE = InnoDB
@@ -143,7 +143,7 @@ DROP TABLE IF EXISTS car_model;
 CREATE TABLE car_model
 (
     model_id              INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    model_name            CHAR(25)            NOT NULL,
+    model_name            VARCHAR(25)  NOT NULL,
     model_manufacturer_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (model_id),
     FOREIGN KEY (model_manufacturer_id) REFERENCES car_manufacturer (manufacturer_id)
@@ -235,7 +235,7 @@ VALUES ('147', 3),
        ('Mito', 3),
        ('Spider', 3),
        ('Stelvio', 3);
-       
+
 -- id10 - BMW
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('3GT', 10),
@@ -249,7 +249,7 @@ VALUES ('3GT', 10),
        ('X3', 10),
        ('X5', 10),
        ('X6', 10);
-       
+
 -- id18 - Chevrolet
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('Aveo', 18),
@@ -285,7 +285,7 @@ VALUES ('125p', 28),
        ('Seicento', 28),
        ('Stilo', 28),
        ('Tipo', 28);
-       
+
 -- id29 - Ford
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('C-MAX', 29),
@@ -311,7 +311,7 @@ VALUES ('Accord', 36),
        ('Insight', 36),
        ('Jazz', 36),
        ('Odyssey', 36);
-       
+
 -- id39 - Hyundai
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('Coupe', 39),
@@ -325,7 +325,7 @@ VALUES ('Coupe', 39),
        ('ix35', 39),
        ('Santa Fe', 39),
        ('Tucson', 39);
-       
+
 -- id44 - Jeep
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('Cherokee', 44),
@@ -350,7 +350,7 @@ VALUES ('Carens', 45),
        ('Sportage', 45),
        ('Stonic', 45),
        ('Venga', 45);
-       
+
 -- id59 - Mazda
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('2', 59),
@@ -362,7 +362,7 @@ VALUES ('2', 59),
        ('CX-7', 59),
        ('MX-5', 59),
        ('Premacy', 59);
-       
+
 -- id61 - Mercedes-Benz
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('CLA', 61),
@@ -376,7 +376,7 @@ VALUES ('CLA', 61),
        ('Klasa E', 61),
        ('Klasa S', 61),
        ('ML', 61);
-       
+
 -- id68 - Nissan
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('Almera', 68),
@@ -390,7 +390,7 @@ VALUES ('Almera', 68),
        ('Qashqai', 68),
        ('Qashqai+2', 68),
        ('X-Trail', 68);
-       
+
 -- id74 - Peugot
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('2008', 74),
@@ -404,7 +404,7 @@ VALUES ('2008', 74),
        ('5008', 74),
        ('508', 74),
        ('Partner', 74);
-       
+
 -- id93 - Suzuki
 INSERT INTO car_model(model_name, model_manufacturer_id)
 VALUES ('Baleno', 93),
@@ -444,10 +444,11 @@ VALUES ('Caddy', 100),
        ('Tiguran', 100),
        ('Touran', 100),
        ('Vento', 100);
-       
- -- id101 - Volvo
+
+-- id101 - Volvo
 INSERT INTO car_model(model_name, model_manufacturer_id)
-VALUES ('S40', 101),
+VALUES ('C70', 101),
+       ('S40', 101),
        ('S60', 101),
        ('S80', 101),
        ('S90', 101),
@@ -466,20 +467,21 @@ VALUES ('S40', 101),
 DROP TABLE IF EXISTS car;
 CREATE TABLE car
 (
-    car_id              INT UNSIGNED                                                           NULL AUTO_INCREMENT,
-    car_model_id        INT UNSIGNED                                                           NOT NULL,
+    car_id              INT UNSIGNED                                                              NULL AUTO_INCREMENT,
+    car_model_id        INT UNSIGNED                                                              NOT NULL,
 
-    car_price           INT UNSIGNED                                                           NOT NULL,
+    car_price           INT UNSIGNED                                                              NOT NULL,
 
     car_type            ENUM ('coupe','hatchback','minivan','pickup','sedan','suv','van','wagon') NOT NULL,
-    car_color           CHAR(20)                                                                  NOT NULL, -- maybe new table?
+    -- maybe new table for color?
+    car_color           VARCHAR(20)                                                               NOT NULL,
 
-    car_mileage         INT UNSIGNED                                                       NOT NULL,
-    car_year_from       INT UNSIGNED                                                       NOT NULL,
+    car_mileage         INT UNSIGNED                                                              NOT NULL,
+    car_year_from       INT UNSIGNED                                                              NOT NULL,
 
-    car_engine_capacity INT UNSIGNED                                                       NOT NULL,
+    car_engine_capacity INT UNSIGNED                                                              NOT NULL,
     car_fuel            ENUM ('diesel','petrol','petrol-gas','petrol-electric','electric'),
-    car_power           INT UNSIGNED                                                       NOT NULL,
+    car_power           INT UNSIGNED                                                              NOT NULL,
     car_transmission    ENUM ('automatic','semi-automatic','manual')                              NOT NULL,
 
     PRIMARY KEY (car_id),
@@ -495,48 +497,99 @@ CREATE TABLE car
 
 INSERT INTO car
 VALUES (1, 31, 5000, 'minivan', 'silver', 215000, 2005, 1997, 'diesel', 90, 'manual'),
-       (2, 44, 7500, 'minivan', 'black', 220000, 2004, 2172, 'diesel', 125, 'manual');
+       (2, 44, 7500, 'minivan', 'black', 220000, 2004, 2172, 'diesel', 125, 'manual'),
+       (3, 227, 20000, 'sedan', 'black', 800000, 2000, 1984, 'petrol', 163, 'manual');
 
 -- -----------------------------------------------------------------------
 -- creating a customer table
 -- -----------------------------------------------------------------------
-/*
+
 DROP TABLE IF EXISTS customer;
 CREATE TABLE customer
 (
-    customer_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    customer_id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    customer_name         VARCHAR(20)  NOT NULL,
+    customer_last_name    VARCHAR(20)  NOT NULL,
+    customer_pesel        VARCHAR(11)  NOT NULL,
+    customer_phone_number VARCHAR(9)   NOT NULL,
+    customer_postal_code  VARCHAR(6)   NOT NULL,
+    customer_city         VARCHAR(20)  NOT NULL,
+    customer_street       VARCHAR(30)  NOT NULL,
+    customer_home_number  INT          NOT NULL,
+    customer_birth_date   DATETIME     NOT NULL,
     PRIMARY KEY (customer_id)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET utf8
     COLLATE = utf8_unicode_ci;
-*/
+
 
 
 -- -----------------------------------------------------------------------
 -- creating a transaction table
 -- -----------------------------------------------------------------------
-/*
+
 DROP TABLE IF EXISTS deal;
 CREATE TABLE deal
 (
-    deal_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY (deal_id)
+    deal_id          INT UNSIGNED             NOT NULL AUTO_INCREMENT,
+    deal_type        ENUM ('sale','purchase') NOT NULL,
+    deal_amount      INT UNSIGNED             NOT NULL,
+    deal_date        DATETIME                 NOT NULL,
+    deal_customer_id INT                      NOT NULL,
+    deal_car_id      INT                      NOT NULL,
+    PRIMARY KEY (deal_id),
+    FOREIGN KEY (deal_customer_id) REFERENCES customer (customer_id),
+    FOREIGN KEY (deal_car_id) REFERENCES car (car_id)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET utf8
     COLLATE = utf8_unicode_ci;
-*/
+
 
 -- -----------------------------------------------------------------------
 -- tests
 -- -----------------------------------------------------------------------
 
-SELECT car_id as id, manufacturer_name as manufacturer, model_name as model, car_price as price
+
+-- all car models in database
+SELECT model_id          AS id,
+       manufacturer_name AS manufacturer,
+       model_name        AS model
+FROM car_model
+         INNER JOIN car_manufacturer
+                    ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id;
+
+
+-- all cars in used car dealer short ver
+SELECT car_id            AS id,
+       manufacturer_name AS manufacturer,
+       model_name        AS model,
+       car_price         AS price
 FROM car
          INNER JOIN car_model
                     ON car.car_model_id = car_model.model_id
          INNER JOIN car_manufacturer
                     ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id
 ORDER BY car_id;
+
+
+-- all cars in used car dealer long ver
+SELECT car_id              AS id,
+       manufacturer_name   AS manufacturer,
+       model_name          AS model,
+       car_price           AS price,
+       car_type            AS type,
+       car_color           AS color,
+       car_mileage         AS mileage,
+       car_year_from       AS year_from,
+       car_engine_capacity AS engine_capacity,
+       car_fuel            AS fuel,
+       car_power           AS power,
+       car_transmission    AS transmission
+FROM car
+         INNER JOIN car_model
+                    ON car.car_model_id = car_model.model_id
+         INNER JOIN car_manufacturer
+                    ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id
 

@@ -3,6 +3,7 @@ car_manufacturer
 ==============================
 manufacturer_id (pk)
 manufacturer_name
+manufacturer_origin
 ==============================
 
 
@@ -12,7 +13,7 @@ car_model
 ==============================
 model_id (pk)
 model_name
-model_manufacturer <- manufacturer_id
+model_manufacturer_id <- manufacturer_id
 ==============================
 
 
@@ -22,12 +23,16 @@ car
 ==============================
 car_id (pk)
 car_model_id <- model_id 
+car_price
 car_type
+car_color
 car_mileage
 car_year_from
-car_gearbox
-car_color
-car_price
+car_engine_capacity
+car_fuel
+car_power
+car_transmission
+
 ==============================
 
 

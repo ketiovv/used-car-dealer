@@ -493,28 +493,68 @@ CREATE TABLE car
 -- -----------------------------------------------------------------------
 -- inserting cars
 -- -----------------------------------------------------------------------
-
+-- ('coupe','hatchback','minivan','pickup','sedan','suv','van','wagon')
 INSERT INTO car
-VALUES -- xsara
+VALUES -- citroen xsara
        (1, 31, 5000, 'minivan', 'silver', 215000, 2005, 1997, 'diesel', 90, 'manual'),
-       -- zafira
+       -- opel zafira
        (2, 44, 7500, 'minivan', 'black', 220000, 2004, 2172, 'diesel', 125, 'manual'),
-       -- c70
+       -- volvo c70
        (3, 227, 20000, 'sedan', 'black', 800000, 2000, 1984, 'petrol', 163, 'manual'),
-       -- a1
+       -- audi a1
        (4, 1, 9000, 'hatchback', 'red', 450000, 2003, 1984, 'petrol', 101, 'manual'),
-       -- kodiaq
+       -- skoda kodiaq
        (5, 50, 15000, 'suv', 'blue', 90000, 2015, 1400, 'petrol', 120, 'manual'),
-       -- combo
+       -- opel combo
        (6, 35, 15000, 'suv', 'white', 340000, 1998, 1600, 'petrol', 109, 'manual'),
-       -- mazda3
+       -- mazda 3
        (7, 155, 19000, 'wagon', 'green', 90000, 2015, 1300, 'diesel', 118, 'manual'),
-       -- rav4
-       (8, 213, 155000, 'white', 'blue', 0, 2020, 3000, 'petrol', 218, 'manual'),
-       -- yeti
+       -- toyota rav4
+       (8, 213, 155000, 'suv', 'white', 0, 2020, 3000, 'diesel', 218, 'automatic'),
+       -- skoda yeti
        (9, 55, 22000, 'minivan', 'brown', 110000, 2013, 1800, 'petrol', 123, 'manual'),
        -- hyundai coupe
-       (10, 124, 51500, 'sedan', 'blue', 90000, 2015, 2500, 'petrol', 200, 'automatic');
+       (10, 124, 101500, 'sedan', 'blue', 90000, 2015, 2500, 'petrol', 200, 'automatic'),
+       -- suzuki splash
+       (11, 200, 13500, 'hatchback', 'green', 145000, 2009, 1300, 'petrol', 86, 'semi-automatic'),
+       -- skoda scala
+       (12, 53, 83900, 'wagon', 'blue', 25000, 2019, 1498, 'petrol-gas', 150, 'manual'),
+       -- Kia Optima
+       (13, 146, 52000, 'sedan', 'black', 75000, 2016, 2400, 'diesel', 200, 'automatic'),
+       -- Volvo V50
+       (14, 233, 18900, 'wagon', 'dark blue', 206000, 2011, 1600, 'petrol', 115, 'automatic'),
+       -- hyundai elantra
+       (15, 125, 68900, 'sedan', 'gray', 5000, 2019, 1600, 'petrol', 128, 'automatic'),
+       -- opel vectra
+       (16, 42, 9500, 'sedan', 'gray', 238000, 2004, 3175, 'petrol-gas', 211, 'manual'),
+       -- opel corsa
+       (17, 36, 1300, 'hatchback', 'white', 79999, 2011, 1300, 'petrol', 90, 'manual'),
+       -- audi a3
+       (18, 3, 16000, 'hatchback', 'red', 140000, 2006, 2000, 'diesel', 180, 'manual'),
+       -- alfa mito
+       (19, 63, 20000, 'hatchback', 'red', 74500, 2011, 1368, 'petrol', 110, 'manual'),
+       -- volkswagen tiguan
+       (20, 224, 62000, 'suv', 'black', 83000, 2014, 1968, 'diesel', 170, 'manual'),
+       -- opel combo
+       (21, 35, 12700, 'van', 'blue', 165000, 2008, 1400, 'petrol-gas', 105, 'manual'),
+       -- dacia dokker
+       (22, 87, 323000, 'van', 'white', 117000, 2015, 1598, 'petrol', 120, 'manual'),
+       -- fiat grande punto
+       (23, 98, 12000, 'hatchback', 'red', 131500, 2007, 1368, 'petrol-gas', 90, 'manual'),
+       -- opel vivaro
+       (24, 43, 73000, 'van', 'brown', 88000, 2017, 1598, 'petrol', 140, 'automatic'),
+       -- nissan patrol
+       (25, 180, 29999, 'suv', 'red', 155500, 1996, 2826, 'petrol', 116, 'manual'),
+       -- ford s-max
+       (26, 114, 17800, 'minivan', 'blue', 235000, 2006, 1999, 'diesel', 135, 'manual'),
+       -- fiat panda
+       (27, 99, 21900, 'hatchback', 'red', 12000, 2013, 1242, 'petrol-gas', 87, 'manual'),
+       -- nissan navara
+       (28, 178, 52000, 'suv', 'gray', 163000, 2011, 2488, 'diesel', 190, 'automatic'),
+       -- skoda karoq
+       (29, 49, 106000, 'suv', 'white', 10000, 2020, 1600, 'petrol', 115, 'manual'),
+       -- volvo xc60
+       (30, 237, 87000, 'suv', 'gray', 52000, 2015, 2400, 'petrol', 190, 'automatic');
 
 -- -----------------------------------------------------------------------
 -- creating a customer table
@@ -545,16 +585,23 @@ CREATE TABLE customer
 -- -----------------------------------------------------------------------
 
 INSERT INTO customer
-VALUES (1, 'Wojciech', 'Kajstura', '12345678901', '123456789', '43-520', 'Chybie', 'Sezamkowa', 5,'1998-04-24 00:00:00'),
+VALUES (1, 'Wojciech', 'Kajstura', '12345678901', '123456789', '43-520', 'Chybie', 'Sezamkowa', 5,
+        '1998-04-24 00:00:00'),
        (2, 'Robert', 'Olej', '10987654521', '241254152', '11-220', 'Katowice', 'Chybska', 125, '1998-01-01 00:00:00'),
        (3, 'Konrad', 'Lubera', '12533515112', '423532556', '11-522', 'Staszow', 'Kielecka', 55, '1998-09-01 00:00:00'),
-       (4, 'Mirek', 'Handlarz', '23232323232', '123123123', '05-262', 'Ciechocinek', 'Sprawiedliwa', 2,'1956-01-01 00:00:00'),
-       (5, 'Sebastian Enrique', 'Alvarez', '12345677890', '997997997', '12352', 'Berlin', 'Przy', 100,'1983-06-08 00:00:00'),
-       (6, 'Adam', 'Miauczynski', '61032628268', '145456789', '12-345', 'Wroclaw', 'Drukarnicza', 25,'1963-02-06 00:00:00'),
-       (7, 'Andrzej', 'Nowak', '83121446874', '532156789', '98-765', 'Warszawa', 'Spokojna', 4,'1955-02-08 00:00:00'),
-       (8, 'Robert', 'Biedronka', '48121586339', '251227997', '42-631', 'Warszawa', 'Wiejska', 2,'1988-02-05 00:00:00'),
-       (9, 'Michal', 'Kucharczyk', '99100695124', '995252522', '23-673', 'Gdansk', 'Trojmiejska', 52,'1993-05-04 00:00:00'),
-       (10, 'Robert', 'Prawandowski', '62090461929', '925997646', '45-125', 'Sopot', 'Nadmorska', 20,'1997-04-02 00:00:00');
+       (4, 'Mirek', 'Handlarz', '23232323232', '123123123', '05-262', 'Ciechocinek', 'Sprawiedliwa', 2,
+        '1956-01-01 00:00:00'),
+       (5, 'Sebastian Enrique', 'Alvarez', '12345677890', '997997997', '12352', 'Berlin', 'Przy', 100,
+        '1983-06-08 00:00:00'),
+       (6, 'Adam', 'Miauczynski', '61032628268', '145456789', '12-345', 'Wroclaw', 'Drukarnicza', 25,
+        '1963-02-06 00:00:00'),
+       (7, 'Andrzej', 'Nowak', '83121446874', '532156789', '98-765', 'Warszawa', 'Spokojna', 4, '1955-02-08 00:00:00'),
+       (8, 'Robert', 'Biedronka', '48121586339', '251227997', '42-631', 'Warszawa', 'Wiejska', 2,
+        '1988-02-05 00:00:00'),
+       (9, 'Michal', 'Kucharczyk', '99100695124', '995252522', '23-673', 'Gdansk', 'Trojmiejska', 52,
+        '1993-05-04 00:00:00'),
+       (10, 'Robert', 'Prawandowski', '62090461929', '925997646', '45-125', 'Sopot', 'Nadmorska', 20,
+        '1997-04-02 00:00:00');
 
 -- -----------------------------------------------------------------------
 -- creating a transaction table
@@ -584,8 +631,15 @@ CREATE TABLE deal
 -- -----------------------------------------------------------------------
 
 INSERT INTO deal
-VALUES (1, 'purchase', 4500, '2020-07-01', 1, 1),
-       (2, 'purchase', 7000, '2020-07-02', 1, 2);
+VALUES (1, 'purchase', 4500, '2020-01-01', 1, 1),
+       (2, 'purchase', 7000, '2020-01-02', 1, 2),
+       (3, 'purchase', 68000, '2020-02-22', 4, 24),
+       (5, 'purchase', 25000, '2020-03-17', 7, 25),
+       (6, 'purchase', 14500, '2020-03-23', 5, 26),
+       (7, 'purchase', 19000, '2020-04-30', 6, 27),
+       (8, 'purchase', 46000, '2020-05-09', 3, 28),
+       (9, 'purchase', 96700, '2020-06-15', 8, 29),
+       (10, 'purchase', 80000, '2020-07-01', 10, 30);
 
 -- -----------------------------------------------------------------------
 -- tests
@@ -593,14 +647,14 @@ VALUES (1, 'purchase', 4500, '2020-07-01', 1, 1),
 
 
 -- all car models in database
-/*
+
 SELECT model_id          AS id,
        manufacturer_name AS manufacturer,
        model_name        AS model
 FROM car_model
          INNER JOIN car_manufacturer
                     ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id;
-*/
+
 
 
 -- all cars in used car dealer short ver
@@ -623,6 +677,7 @@ SELECT car_id                              AS id,
        manufacturer_name                   AS manufacturer,
        model_name                          AS model,
        CONCAT(car_price, ' PLN')           AS price,
+       CONCAT(ROUND(car_price/4.45,0), ' EUR')           AS price_eur,
        car_type                            AS type,
        car_color                           AS color,
        CONCAT(car_mileage, ' km')          AS mileage,
@@ -641,30 +696,35 @@ ORDER BY manufacturer_name;
 
 -- all customers long ver
 
-SELECT customer_id           AS id,
-       customer_name         AS name,
-       customer_last_name    AS last_name,
-       customer_pesel        AS pesel,
-       customer_phone_number AS phone_number,
-       customer_postal_code  AS postal_code,
-       customer_city         AS city,
-       customer_street       AS street,
-       customer_home_number  AS home_number,
-       customer_birth_date   AS birth_date
-FROM customer;
+SELECT customer_id                             AS id,
+       customer_name                           AS name,
+       customer_last_name                      AS last_name,
+       customer_pesel                          AS pesel,
+       DATE(customer_birth_date)               AS birth_date,
+       YEAR(NOW()) - YEAR(customer_birth_date) AS age,
+       customer_phone_number                   AS phone_number,
+       customer_postal_code                    AS postal_code,
+       customer_city                           AS city,
+       customer_street                         AS street,
+       customer_home_number                    AS home_number
 
+FROM customer;
 
 
 -- all deals
 
-SELECT deal_id     AS id,
+SELECT deal_id                                                                     AS id,
        manufacturer_name,
        model_name,
        customer_name,
        customer_last_name,
-       deal_type   AS type,
-       deal_amount AS amount,
-       deal_date   AS date
+       deal_type                                                                   AS type,
+       DATE(deal_date)                                                             AS deal_date,
+       CONCAT(deal_amount, ' PLN')                                                 AS amount,
+       CONCAT(car_price, ' PLN')                                                   AS our_price,
+       IF(deal_type = 'purchase', CONCAT(CAST(car_price AS SIGNED) - CAST(deal_amount AS SIGNED), ' PLN'),
+          CONCAT(CAST(deal_amount AS SIGNED) - CAST(car_price AS SIGNED), ' PLN')) AS profit
+
 FROM deal
          INNER JOIN customer ON deal.deal_customer_id = customer.customer_id
          INNER JOIN car ON deal.deal_car_id = car.car_id

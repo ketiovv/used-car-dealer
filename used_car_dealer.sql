@@ -473,7 +473,6 @@ CREATE TABLE car
     car_price           INT UNSIGNED                                                              NOT NULL,
 
     car_type            ENUM ('coupe','hatchback','minivan','pickup','sedan','suv','van','wagon') NOT NULL,
-    -- maybe new table for color?
     car_color           VARCHAR(20)                                                               NOT NULL,
 
     car_mileage         INT UNSIGNED                                                              NOT NULL,
@@ -496,9 +495,26 @@ CREATE TABLE car
 -- -----------------------------------------------------------------------
 
 INSERT INTO car
-VALUES (1, 31, 5000, 'minivan', 'silver', 215000, 2005, 1997, 'diesel', 90, 'manual'),
+VALUES -- xsara
+       (1, 31, 5000, 'minivan', 'silver', 215000, 2005, 1997, 'diesel', 90, 'manual'),
+       -- zafira
        (2, 44, 7500, 'minivan', 'black', 220000, 2004, 2172, 'diesel', 125, 'manual'),
-       (3, 227, 20000, 'sedan', 'black', 800000, 2000, 1984, 'petrol', 163, 'manual');
+       -- c70
+       (3, 227, 20000, 'sedan', 'black', 800000, 2000, 1984, 'petrol', 163, 'manual'),
+       -- a1
+       (4, 1, 9000, 'hatchback', 'red', 450000, 2003, 1984, 'petrol', 101, 'manual'),
+       -- kodiaq
+       (5, 50, 15000, 'suv', 'blue', 90000, 2015, 1400, 'petrol', 120, 'manual'),
+       -- combo
+       (6, 35, 15000, 'suv', 'white', 340000, 1998, 1600, 'petrol', 109, 'manual'),
+       -- mazda3
+       (7, 155, 19000, 'wagon', 'green', 90000, 2015, 1300, 'diesel', 118, 'manual'),
+       -- rav4
+       (8, 213, 155000, 'white', 'blue', 0, 2020, 3000, 'petrol', 218, 'manual'),
+       -- yeti
+       (9, 55, 22000, 'minivan', 'brown', 110000, 2013, 1800, 'petrol', 123, 'manual'),
+       -- hyundai coupe
+       (10, 124, 51500, 'sedan', 'blue', 90000, 2015, 2500, 'petrol', 200, 'automatic');
 
 -- -----------------------------------------------------------------------
 -- creating a customer table
@@ -509,12 +525,12 @@ CREATE TABLE customer
 (
     customer_id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
     customer_name         VARCHAR(20)  NOT NULL,
-    customer_last_name    VARCHAR(20)  NOT NULL,
+    customer_last_name    VARCHAR(25)  NOT NULL,
     customer_pesel        VARCHAR(11)  NOT NULL,
     customer_phone_number VARCHAR(9)   NOT NULL,
     customer_postal_code  VARCHAR(6)   NOT NULL,
     customer_city         VARCHAR(20)  NOT NULL,
-    customer_street       VARCHAR(30)  NOT NULL,
+    customer_street       VARCHAR(35)  NOT NULL,
     customer_home_number  INT          NOT NULL,
     customer_birth_date   DATETIME     NOT NULL,
     PRIMARY KEY (customer_id)
@@ -524,6 +540,21 @@ CREATE TABLE customer
     COLLATE = utf8_unicode_ci;
 
 
+-- -----------------------------------------------------------------------
+-- inserting customers
+-- -----------------------------------------------------------------------
+
+INSERT INTO customer
+VALUES (1, 'Wojciech', 'Kajstura', '12345678901', '123456789', '43-520', 'Chybie', 'Sezamkowa', 5,'1998-04-24 00:00:00'),
+       (2, 'Robert', 'Olej', '10987654521', '241254152', '11-220', 'Katowice', 'Chybska', 125, '1998-01-01 00:00:00'),
+       (3, 'Konrad', 'Lubera', '12533515112', '423532556', '11-522', 'Staszow', 'Kielecka', 55, '1998-09-01 00:00:00'),
+       (4, 'Mirek', 'Handlarz', '23232323232', '123123123', '05-262', 'Ciechocinek', 'Sprawiedliwa', 2,'1956-01-01 00:00:00'),
+       (5, 'Sebastian Enrique', 'Alvarez', '12345677890', '997997997', '12352', 'Berlin', 'Przy', 100,'1983-06-08 00:00:00'),
+       (6, 'Adam', 'Miauczynski', '61032628268', '145456789', '12-345', 'Wroclaw', 'Drukarnicza', 25,'1963-02-06 00:00:00'),
+       (7, 'Andrzej', 'Nowak', '83121446874', '532156789', '98-765', 'Warszawa', 'Spokojna', 4,'1955-02-08 00:00:00'),
+       (8, 'Robert', 'Biedronka', '48121586339', '251227997', '42-631', 'Warszawa', 'Wiejska', 2,'1988-02-05 00:00:00'),
+       (9, 'Michal', 'Kucharczyk', '99100695124', '995252522', '23-673', 'Gdansk', 'Trojmiejska', 52,'1993-05-04 00:00:00'),
+       (10, 'Robert', 'Prawandowski', '62090461929', '925997646', '45-125', 'Sopot', 'Nadmorska', 20,'1997-04-02 00:00:00');
 
 -- -----------------------------------------------------------------------
 -- creating a transaction table
@@ -536,8 +567,8 @@ CREATE TABLE deal
     deal_type        ENUM ('sale','purchase') NOT NULL,
     deal_amount      INT UNSIGNED             NOT NULL,
     deal_date        DATETIME                 NOT NULL,
-    deal_customer_id INT                      NOT NULL,
-    deal_car_id      INT                      NOT NULL,
+    deal_customer_id INT UNSIGNED             NOT NULL,
+    deal_car_id      INT UNSIGNED             NOT NULL,
     PRIMARY KEY (deal_id),
     FOREIGN KEY (deal_customer_id) REFERENCES customer (customer_id),
     FOREIGN KEY (deal_car_id) REFERENCES car (car_id)
@@ -547,49 +578,96 @@ CREATE TABLE deal
     COLLATE = utf8_unicode_ci;
 
 
+
+-- -----------------------------------------------------------------------
+-- inserting deals
+-- -----------------------------------------------------------------------
+
+INSERT INTO deal
+VALUES (1, 'purchase', 4500, '2020-07-01', 1, 1),
+       (2, 'purchase', 7000, '2020-07-02', 1, 2);
+
 -- -----------------------------------------------------------------------
 -- tests
 -- -----------------------------------------------------------------------
 
 
 -- all car models in database
+/*
 SELECT model_id          AS id,
        manufacturer_name AS manufacturer,
        model_name        AS model
 FROM car_model
          INNER JOIN car_manufacturer
                     ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id;
+*/
 
 
 -- all cars in used car dealer short ver
-SELECT car_id            AS id,
-       manufacturer_name AS manufacturer,
-       model_name        AS model,
-       car_price         AS price
+/*
+SELECT car_id                    AS id,
+       manufacturer_name         AS manufacturer,
+       model_name                AS model,
+       CONCAT(car_price, ' PLN') AS price
 FROM car
          INNER JOIN car_model
                     ON car.car_model_id = car_model.model_id
          INNER JOIN car_manufacturer
                     ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id
-ORDER BY car_id;
-
+ORDER BY manufacturer_name;
+*/
 
 -- all cars in used car dealer long ver
-SELECT car_id              AS id,
-       manufacturer_name   AS manufacturer,
-       model_name          AS model,
-       car_price           AS price,
-       car_type            AS type,
-       car_color           AS color,
-       car_mileage         AS mileage,
-       car_year_from       AS year_from,
-       car_engine_capacity AS engine_capacity,
-       car_fuel            AS fuel,
-       car_power           AS power,
-       car_transmission    AS transmission
+
+SELECT car_id                              AS id,
+       manufacturer_name                   AS manufacturer,
+       model_name                          AS model,
+       CONCAT(car_price, ' PLN')           AS price,
+       car_type                            AS type,
+       car_color                           AS color,
+       CONCAT(car_mileage, ' km')          AS mileage,
+       car_year_from                       AS year_from,
+       CONCAT(car_engine_capacity, ' cm3') AS engine_capacity,
+       car_fuel                            AS fuel,
+       CONCAT(car_power, 'km')             AS power,
+       car_transmission                    AS transmission
 FROM car
          INNER JOIN car_model
                     ON car.car_model_id = car_model.model_id
          INNER JOIN car_manufacturer
                     ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id
+ORDER BY manufacturer_name;
 
+
+-- all customers long ver
+
+SELECT customer_id           AS id,
+       customer_name         AS name,
+       customer_last_name    AS last_name,
+       customer_pesel        AS pesel,
+       customer_phone_number AS phone_number,
+       customer_postal_code  AS postal_code,
+       customer_city         AS city,
+       customer_street       AS street,
+       customer_home_number  AS home_number,
+       customer_birth_date   AS birth_date
+FROM customer;
+
+
+
+-- all deals
+
+SELECT deal_id     AS id,
+       manufacturer_name,
+       model_name,
+       customer_name,
+       customer_last_name,
+       deal_type   AS type,
+       deal_amount AS amount,
+       deal_date   AS date
+FROM deal
+         INNER JOIN customer ON deal.deal_customer_id = customer.customer_id
+         INNER JOIN car ON deal.deal_car_id = car.car_id
+         INNER JOIN car_model ON car.car_model_id = car_model.model_id
+         INNER JOIN car_manufacturer ON car_model.model_manufacturer_id = car_manufacturer.manufacturer_id
+ORDER BY deal_date;

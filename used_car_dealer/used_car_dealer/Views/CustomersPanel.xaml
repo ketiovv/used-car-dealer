@@ -25,47 +25,47 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Name" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding Name}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="LastName" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding LastName}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="PESEL" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding Pesel}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Phone number" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding PhoneNumber}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Postal code" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding PostalCode}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="City" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding City}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Street" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding Street}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Home number" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding HomeNumber}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Birth date" Width="100"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding BirthDate}"/>
                 </StackPanel>
 
             </StackPanel>

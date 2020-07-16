@@ -3,7 +3,7 @@ using System;
 
 namespace used_car_dealer.DAL.Entities
 {
-    class Customer
+    public class Customer
     {
 
         #region Properties

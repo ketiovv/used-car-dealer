@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:used_car_dealer.Views"
              xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <StackPanel Background="White">
@@ -23,7 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0">
-                
+
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Name" Width="100"/>
                     <TextBox Width="250"/>
@@ -68,10 +67,10 @@
                     <Label Content="Birth date" Width="100"/>
                     <TextBox Width="250"/>
                 </StackPanel>
-                
+
             </StackPanel>
-            
-            
+
+
             <StackPanel Grid.Column="1">
 
                 <Button Content="Add customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" />
@@ -79,12 +78,12 @@
                 <Button Content="Delete customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 148" Height="26" />
                 <Button Content="Go to menu" Width="350" HorizontalAlignment="Left" Height="26" 
                         Command="{Binding ApplicationCommands.NavigateCommand}" CommandParameter="MainMenu"/>
-                
+
             </StackPanel>
 
         </Grid>
 
-        
+
 
     </StackPanel>
 </UserControl>

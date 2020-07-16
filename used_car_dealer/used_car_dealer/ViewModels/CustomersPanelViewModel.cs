@@ -6,7 +6,7 @@ using used_car_dealer.Models;
 
 namespace used_car_dealer.ViewModels
 {
-    class CustomersPanelViewModel: BindableBase
+    public class CustomersPanelViewModel: BindableBase
     {
         private Model _model;
 

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using used_car_dealer.ViewModels;
 
 namespace used_car_dealer.Views
 {
@@ -22,9 +23,10 @@ namespace used_car_dealer.Views
     /// </summary>
     public partial class MainMenu: UserControl
     {
-        public MainMenu()
+        public MainMenu(MainMenuViewModel mainMenuViewModel)
         {
             InitializeComponent();
+            DataContext = mainMenuViewModel;
         }
     }
 }

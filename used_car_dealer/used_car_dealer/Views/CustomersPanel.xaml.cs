@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using used_car_dealer.ViewModels;
 
 namespace used_car_dealer.Views
 {
@@ -20,9 +21,10 @@ namespace used_car_dealer.Views
     /// </summary>
     public partial class CustomersPanel: UserControl
     {
-        public CustomersPanel()
+        public CustomersPanel(CustomersPanelViewModel customersPanelViewModel)
         {
             InitializeComponent();
+            DataContext = customersPanelViewModel;
         }
     }
 }

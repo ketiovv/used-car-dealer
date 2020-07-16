@@ -80,7 +80,7 @@ namespace used_car_dealer.DAL.Entities
             //return $"{Name} {LastName} z {City}";
 
             //temporary, check if class is have good params
-            return $"{Name} {LastName} | {Pesel} |  {BirthDate} | {PhoneNumber} | {PostalCode} " +
+            return $"{Id} - {Name} {LastName} | {Pesel} |  {BirthDate} | {PhoneNumber} | {PostalCode} " +
                     $"{City}, {Street} {HomeNumber}";
         }
         public override bool Equals(object obj)

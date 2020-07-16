@@ -11,24 +11,28 @@ namespace used_car_dealer.Models
 {
     class Model
     {
-        public ObservableCollection<Customer> Customers { get; set; }
+        public ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
 
         public Model()
         {
-            Customers = new ObservableCollection<Customer>();
-
-            ///<summary>
-            /// Get all customers from database
-            /// </summary>
             var customers = CustomerRepository.GetAllCustomers();
             foreach (var customer in customers)
-            {
                 Customers.Add(customer);
-            }
-
-            ///<summary>
-            /// itd.. to samo dla reszty
-            /// </summary>
         }
+
+        public bool CustomerExistInRepo(Customer customer) => Customers.Contains(customer);
+        public bool AddCustomerToDatabase(Customer customer)
+        {
+            if (!CustomerExistInRepo(customer))
+            {
+                if (CustomerRepository.AddCustomer(customer))
+                {
+                    Customers.Add(customer);
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

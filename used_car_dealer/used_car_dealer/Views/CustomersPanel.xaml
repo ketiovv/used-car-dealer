@@ -8,18 +8,83 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
-    <StackPanel>
+    <StackPanel Background="White">
         <TextBlock Text="Customer" 
-                 FontSize="50" 
-                 Height="65"
+                 FontSize="30" 
+                 Height="40"
                  HorizontalAlignment="Center"/>
 
-        <ListBox ItemsSource="{Binding Customers}" 
-                 MinHeight="300"/>
+        <ListView ItemsSource="{Binding Customers}" MaxHeight="205" Margin="15"/>
 
-        <Button Content="Back" Command="{Binding ApplicationCommands.NavigateCommand}" 
-                CommandParameter="MainMenu" 
-                Height="20"/>
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Name" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="LastName" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="PESEL" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Phone number" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Postal code" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="City" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Street" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Home number" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Birth date" Width="100"/>
+                    <TextBox Width="250"/>
+                </StackPanel>
+                
+            </StackPanel>
+            
+            
+            <StackPanel Grid.Column="1">
+
+                <Button Content="Add customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" />
+                <Button Content="Edit customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" />
+                <Button Content="Delete customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 148" Height="26" />
+                <Button Content="Go to menu" Width="350" HorizontalAlignment="Left" Height="26" 
+                        Command="{Binding ApplicationCommands.NavigateCommand}" CommandParameter="MainMenu"/>
+                
+            </StackPanel>
+
+        </Grid>
+
+        
 
     </StackPanel>
 </UserControl>

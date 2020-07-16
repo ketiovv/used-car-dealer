@@ -6,14 +6,20 @@
              xmlns:local="clr-namespace:used_car_dealer.Views"
              xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="900">
     <StackPanel Background="White">
         <TextBlock Text="Customer" 
                  FontSize="30" 
                  Height="40"
                  HorizontalAlignment="Center"/>
 
-        <ListView ItemsSource="{Binding Customers}" MaxHeight="205" Margin="15"/>
+        <DataGrid MaxHeight="205" Margin="15"
+                  ItemsSource="{Binding Customers}"
+                  SelectedItem="{Binding SelectedCustomer}"
+                  IsReadOnly="True"
+                  GridLinesVisibility="None">
+
+        </DataGrid>
 
         <Grid Margin="15">
             <Grid.ColumnDefinitions>
@@ -73,7 +79,8 @@
 
             <StackPanel Grid.Column="1">
 
-                <Button Content="Add customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" />
+                <Button Content="Add customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" 
+                        Command="{Binding AddCustomerCommand}"/>
                 <Button Content="Edit customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" />
                 <Button Content="Delete customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 148" Height="26" />
                 <Button Content="Go to menu" Width="350" HorizontalAlignment="Left" Height="26" 

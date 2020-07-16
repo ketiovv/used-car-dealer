@@ -21,15 +21,22 @@ namespace used_car_dealer.DAL.Repositories
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 var command = new MySqlCommand(allCustomersQuery, connection);
-                connection.Open();
-
-                var reader = command.ExecuteReader();
-                while (reader.Read())
+                try
                 {
-                    customers.Add(new Customer(reader));
-                }
+                    connection.Open();
 
-                connection.Close();
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        customers.Add(new Customer(reader));
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Nie można połączyć z bazą danych", ex);
+                }
             }
 
             return customers;

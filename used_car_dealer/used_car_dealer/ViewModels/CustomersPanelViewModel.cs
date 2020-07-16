@@ -17,7 +17,7 @@ namespace used_car_dealer.ViewModels
 
         #region Properties
 
-        private Customer _selectedCustomer;
+        private Customer _selectedCustomer = null;
         public Customer SelectedCustomer
         {
             get => _selectedCustomer;
@@ -104,6 +104,7 @@ namespace used_car_dealer.ViewModels
             _customers = _model.Customers;
 
             _addCustomerCommand = new DelegateCommand(AddCustomer, AddCustomerPossible);
+            _deleteCustomerCommand = new DelegateCommand(DeleteCustomer, DeleteCustomerPossible);
 
         }
 
@@ -123,6 +124,12 @@ namespace used_car_dealer.ViewModels
             get => _addCustomerCommand;
             set => SetProperty(ref _addCustomerCommand, value);
         }
+        private ICommand _deleteCustomerCommand;
+        public ICommand DeleteCustomerCommand
+        {
+            get => _deleteCustomerCommand;
+            set => SetProperty(ref _deleteCustomerCommand, value);
+        }
 
         public void AddCustomer()
         {
@@ -134,7 +141,21 @@ namespace used_car_dealer.ViewModels
             }
         }
 
+        public void DeleteCustomer()
+        {
+            var cust = SelectedCustomer;
+            if (_model.DeleteCustomerFromDatabase(cust))
+            {
+                MessageBox.Show($"customer with id:{cust.Id} deleted from database!");
+            }
+        }
+
         public bool AddCustomerPossible()
+        {
+            return true;
+        }
+
+        public bool DeleteCustomerPossible()
         {
             return true;
         }

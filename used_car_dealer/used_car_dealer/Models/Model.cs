@@ -20,6 +20,7 @@ namespace used_car_dealer.Models
                 Customers.Add(customer);
         }
 
+
         public bool CustomerExistInRepo(Customer customer) => Customers.Contains(customer);
         public bool AddCustomerToDatabase(Customer customer)
         {
@@ -33,6 +34,19 @@ namespace used_car_dealer.Models
             }
             return false;
         }
+        public bool DeleteCustomerFromDatabase(Customer customer)
+        {
+            if (CustomerExistInRepo(customer))
+            {
+                if (CustomerRepository.DeleteCustomer(customer))
+                {
+                    Customers.Remove(customer);
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
     }
 }

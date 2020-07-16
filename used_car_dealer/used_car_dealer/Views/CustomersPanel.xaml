@@ -82,7 +82,8 @@
                 <Button Content="Add customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" 
                         Command="{Binding AddCustomerCommand}"/>
                 <Button Content="Edit customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" />
-                <Button Content="Delete customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 148" Height="26" />
+                <Button Content="Delete customer" Width="350" HorizontalAlignment="Left" Margin="0 0 0 148" Height="26"
+                        Command="{Binding DeleteCustomerCommand}"/>
                 <Button Content="Go to menu" Width="350" HorizontalAlignment="Left" Height="26" 
                         Command="{Binding ApplicationCommands.NavigateCommand}" CommandParameter="MainMenu"/>
 

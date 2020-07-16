@@ -35,11 +35,36 @@ namespace used_car_dealer.DAL.Repositories
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Nie można połączyć z bazą danych", ex);
+                    throw new Exception("Nie można otworzyć połączenia z bazą danych", ex);
                 }
             }
 
             return customers;
+        }
+        public static bool AddCustomer(Customer customer)
+        {
+            bool condition = false;
+
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                var command = new MySqlCommand($"{addCustomerQuery} {customer.ToInsert()}", connection);
+                try
+                {
+                    connection.Open();
+
+                    var id = command.ExecuteNonQuery();
+                    condition = true;
+                    customer.Id = (uint)command.LastInsertedId;
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Nie można otworzyć połączenia z bazą danych", ex);
+                }
+            }
+
+            return condition;
         }
     }
 }

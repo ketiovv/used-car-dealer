@@ -572,7 +572,7 @@ CREATE TABLE customer
     customer_city         VARCHAR(20)  NOT NULL,
     customer_street       VARCHAR(35)  NOT NULL,
     customer_home_number  INT          NOT NULL,
-    customer_birth_date   DATETIME     NOT NULL,
+    customer_birth_date   DATE         NOT NULL,
     PRIMARY KEY (customer_id)
 )
     ENGINE = InnoDB
@@ -586,22 +586,22 @@ CREATE TABLE customer
 
 INSERT INTO customer
 VALUES (1, 'Wojciech', 'Kajstura', '12345678901', '123456789', '43-520', 'Chybie', 'Sezamkowa', 5,
-        '1998-04-24 00:00:00'),
-       (2, 'Robert', 'Olej', '10987654521', '241254152', '11-220', 'Katowice', 'Chybska', 125, '1998-01-01 00:00:00'),
-       (3, 'Konrad', 'Lubera', '12533515112', '423532556', '11-522', 'Staszow', 'Kielecka', 55, '1998-09-01 00:00:00'),
+        '1998-04-24'),
+       (2, 'Robert', 'Olej', '10987654521', '241254152', '11-220', 'Katowice', 'Chybska', 125, '1998-01-01'),
+       (3, 'Konrad', 'Lubera', '12533515112', '423532556', '11-522', 'Staszow', 'Kielecka', 55, '1998-09-01'),
        (4, 'Mirek', 'Handlarz', '23232323232', '123123123', '05-262', 'Ciechocinek', 'Sprawiedliwa', 2,
-        '1956-01-01 00:00:00'),
+        '1956-01-01'),
        (5, 'Sebastian Enrique', 'Alvarez', '12345677890', '997997997', '12352', 'Berlin', 'Przy', 100,
-        '1983-06-08 00:00:00'),
+        '1983-06-08'),
        (6, 'Adam', 'Miauczynski', '61032628268', '145456789', '12-345', 'Wroclaw', 'Drukarnicza', 25,
-        '1963-02-06 00:00:00'),
+        '1963-02-06'),
        (7, 'Andrzej', 'Nowak', '83121446874', '532156789', '98-765', 'Warszawa', 'Spokojna', 4, '1955-02-08 00:00:00'),
        (8, 'Robert', 'Biedronka', '48121586339', '251227997', '42-631', 'Warszawa', 'Wiejska', 2,
-        '1988-02-05 00:00:00'),
+        '1988-02-05'),
        (9, 'Michal', 'Kucharczyk', '99100695124', '995252522', '23-673', 'Gdansk', 'Trojmiejska', 52,
-        '1993-05-04 00:00:00'),
+        '1993-05-04'),
        (10, 'Robert', 'Prawandowski', '62090461929', '925997646', '45-125', 'Sopot', 'Nadmorska', 20,
-        '1997-04-02 00:00:00');
+        '1997-04-02');
 
 -- -----------------------------------------------------------------------
 -- creating a transaction table
@@ -613,7 +613,7 @@ CREATE TABLE deal
     deal_id          INT UNSIGNED             NOT NULL AUTO_INCREMENT,
     deal_type        ENUM ('sale','purchase') NOT NULL,
     deal_amount      INT UNSIGNED             NOT NULL,
-    deal_date        DATETIME                 NOT NULL,
+    deal_date        DATE                     NOT NULL,
     deal_customer_id INT UNSIGNED             NOT NULL,
     deal_car_id      INT UNSIGNED             NOT NULL,
     PRIMARY KEY (deal_id),
@@ -673,19 +673,19 @@ ORDER BY manufacturer_name;
 
 -- all cars in used car dealer long ver
 
-SELECT car_id                              AS id,
-       manufacturer_name                   AS manufacturer,
-       model_name                          AS model,
-       CONCAT(car_price, ' PLN')           AS price,
-       CONCAT(ROUND(car_price/4.45,0), ' EUR')           AS price_eur,
-       car_type                            AS type,
-       car_color                           AS color,
-       CONCAT(car_mileage, ' km')          AS mileage,
-       car_year_from                       AS year_from,
-       CONCAT(car_engine_capacity, ' cm3') AS engine_capacity,
-       car_fuel                            AS fuel,
-       CONCAT(car_power, 'km')             AS power,
-       car_transmission                    AS transmission
+SELECT car_id                                     AS id,
+       manufacturer_name                          AS manufacturer,
+       model_name                                 AS model,
+       CONCAT(car_price, ' PLN')                  AS price,
+       CONCAT(ROUND(car_price / 4.45, 0), ' EUR') AS price_eur,
+       car_type                                   AS type,
+       car_color                                  AS color,
+       CONCAT(car_mileage, ' km')                 AS mileage,
+       car_year_from                              AS year_from,
+       CONCAT(car_engine_capacity, ' cm3')        AS engine_capacity,
+       car_fuel                                   AS fuel,
+       CONCAT(car_power, 'km')                    AS power,
+       car_transmission                           AS transmission
 FROM car
          INNER JOIN car_model
                     ON car.car_model_id = car_model.model_id
@@ -700,7 +700,7 @@ SELECT customer_id                             AS id,
        customer_name                           AS name,
        customer_last_name                      AS last_name,
        customer_pesel                          AS pesel,
-       DATE(customer_birth_date)               AS birth_date,
+       customer_birth_date                     AS birth_date,
        YEAR(NOW()) - YEAR(customer_birth_date) AS age,
        customer_phone_number                   AS phone_number,
        customer_postal_code                    AS postal_code,
@@ -719,7 +719,7 @@ SELECT deal_id                                                                  
        customer_name,
        customer_last_name,
        deal_type                                                                   AS type,
-       DATE(deal_date)                                                             AS deal_date,
+       deal_date                                                                   AS deal_date,
        CONCAT(deal_amount, ' PLN')                                                 AS amount,
        CONCAT(car_price, ' PLN')                                                   AS our_price,
        IF(deal_type = 'purchase', CONCAT(CAST(car_price AS SIGNED) - CAST(deal_amount AS SIGNED), ' PLN'),

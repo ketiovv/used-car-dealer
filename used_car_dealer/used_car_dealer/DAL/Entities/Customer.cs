@@ -17,7 +17,7 @@ namespace used_car_dealer.DAL.Entities
         public string City { get; set; }
         public string Street { get; set; }
         public uint HomeNumber { get; set; }
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
 
         #endregion
 
@@ -33,11 +33,11 @@ namespace used_car_dealer.DAL.Entities
             City = reader["customer_city"].ToString();
             Street = reader["customer_street"].ToString();
             HomeNumber = uint.Parse(reader["customer_home_number"].ToString());
-            BirthDate = DateTime.Parse(reader["customer_birth_date"].ToString());
+            BirthDate = reader["customer_birth_date"].ToString();
         }
 
         public Customer(string name, string lastName, string pesel, string phoneNumber, string postalCode,
-            string city, string street, uint homeNumber, DateTime birthDate)
+            string city, string street, uint homeNumber, string birthDate)
         {
             Id = null;
             Name = name.Trim();
@@ -70,8 +70,7 @@ namespace used_car_dealer.DAL.Entities
         #region Methods
         public string ToInsert()
         {
-            return $"('{Name}', '{LastName}','{Pesel}','{PhoneNumber}','{PostalCode}'," +
-                    $"'{City}','{Street}','{HomeNumber}','{BirthDate}')";
+            return $"('{Name}', '{LastName}', '{Pesel}', '{PhoneNumber}', '{PostalCode}', '{City}', '{Street}', {HomeNumber},'{BirthDate}')";
         }
 
 

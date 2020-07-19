@@ -15,7 +15,7 @@ namespace used_car_dealer.DAL.Repositories
 
         public static List<Customer> GetAllCustomers()
         {
-            List<Customer> customers = new List<Customer>();
+            var customers = new List<Customer>();
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 var command = new MySqlCommand(allCustomersQuery, connection);

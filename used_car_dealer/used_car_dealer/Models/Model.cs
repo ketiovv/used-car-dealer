@@ -22,6 +22,12 @@ namespace used_car_dealer.Models
             var customers = CustomerRepository.GetAllCustomers();
             foreach (var customer in customers)
                 Customers.Add(customer);
+
+            var cars = CarRepository.GetAllCars();
+            foreach (var car in cars)
+            {
+                Cars.Add(car);
+            }
         }
 
         /// <summary>
@@ -54,7 +60,9 @@ namespace used_car_dealer.Models
             return false;
         }
 
-
+        ///<summary>
+        /// CAR
+        /// </summary>
 
 
     }

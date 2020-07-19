@@ -86,15 +86,7 @@ namespace used_car_dealer.DAL.Entities
         {
             var customer = obj as Customer;
             if (customer is null) return false;
-            if (Name.ToLower() != customer.Name.ToLower()) return false;
-            if (LastName.ToLower() != customer.LastName.ToLower()) return false;
             if (Pesel != customer.Pesel) return false;
-            if (PhoneNumber != customer.PhoneNumber) return false;
-            if (PostalCode != customer.PostalCode) return false;
-            if (City.ToLower() != customer.City.ToLower()) return false;
-            if (Street.ToLower() != customer.Street.ToLower()) return false;
-            if (HomeNumber != customer.HomeNumber) return false;
-            if (BirthDate != customer.BirthDate) return false;
 
             return true;
         }

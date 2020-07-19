@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using used_car_dealer.DAL.Entities;
 using used_car_dealer.DAL.Repositories;
 
@@ -12,6 +13,9 @@ namespace used_car_dealer.Models
     class Model
     {
         public ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
+        public ObservableCollection<Car> Cars { get; set; } = new ObservableCollection<Car>();
+        public ObservableCollection<Deal> Deals { get; set; } = new ObservableCollection<Deal>();
+
 
         public Model()
         {
@@ -20,7 +24,9 @@ namespace used_car_dealer.Models
                 Customers.Add(customer);
         }
 
-
+        /// <summary>
+        /// CUSTOMER
+        /// </summary>
         public bool CustomerExistInRepo(Customer customer) => Customers.Contains(customer);
         public bool AddCustomerToDatabase(Customer customer)
         {
@@ -32,6 +38,7 @@ namespace used_car_dealer.Models
                     return true;
                 }
             }
+            MessageBox.Show("Customer already exist");
             return false;
         }
         public bool DeleteCustomerFromDatabase(Customer customer)
@@ -46,6 +53,8 @@ namespace used_car_dealer.Models
             }
             return false;
         }
+
+
 
 
     }

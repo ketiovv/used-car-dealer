@@ -6,9 +6,20 @@
              xmlns:local="clr-namespace:used_car_dealer.Views"
              xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="900">
     <StackPanel>
-        <TextBlock Text="Deals" FontSize="50"/>
+        <TextBlock Text="Deals" 
+                 FontSize="30" 
+                 Height="40"
+                 HorizontalAlignment="Center"/>
+
+        <DataGrid MaxHeight="205" Margin="15"
+                  ItemsSource="{Binding Deals}"
+                  SelectedItem="{Binding SelectedDeal}"
+                  IsReadOnly="True"
+                  GridLinesVisibility="None">
+
+        </DataGrid>
         <Button Content="Back" Command="{Binding ApplicationCommands.NavigateCommand}" CommandParameter="MainMenu"/>
     </StackPanel>
 </UserControl>

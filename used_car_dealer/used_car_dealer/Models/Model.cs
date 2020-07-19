@@ -28,6 +28,11 @@ namespace used_car_dealer.Models
             {
                 Cars.Add(car);
             }
+            var deals = DealRepository.GetAllDeals();
+            foreach (var deal in deals)
+            {
+                Deals.Add(deal);
+            }
         }
 
         /// <summary>

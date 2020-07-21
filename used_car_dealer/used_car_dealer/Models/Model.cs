@@ -16,6 +16,9 @@ namespace used_car_dealer.Models
         public ObservableCollection<Car> Cars { get; set; } = new ObservableCollection<Car>();
         public ObservableCollection<Deal> Deals { get; set; } = new ObservableCollection<Deal>();
 
+        public ObservableCollection<CarManufacturer> CarManufacturers { get; set; } = new ObservableCollection<CarManufacturer>();
+        public ObservableCollection<CarModel> CarModels { get; set; } = new ObservableCollection<CarModel>();
+
 
         public Model()
         {
@@ -32,6 +35,17 @@ namespace used_car_dealer.Models
             foreach (var deal in deals)
             {
                 Deals.Add(deal);
+            }
+
+            var manufacturers = CarManufacturerRepository.GetAllManufacturers();
+            foreach (var manu in manufacturers)
+            {
+                CarManufacturers.Add(manu);
+            }
+            var models = CarModelRepository.GetAllModels();
+            foreach (var model in models)
+            {
+                CarModels.Add(model);
             }
         }
 

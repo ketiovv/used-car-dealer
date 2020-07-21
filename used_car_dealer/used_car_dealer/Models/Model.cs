@@ -82,7 +82,32 @@ namespace used_car_dealer.Models
         ///<summary>
         /// CAR
         /// </summary>
+        public bool CarExistInRepo(Car car) => Cars.Contains(car);
 
-
+        public bool AddCarToDatabase(Car car)
+        {
+            if (!CarExistInRepo(car))
+            {
+                if (CarRepository.AddCar(car))
+                {
+                    Cars.Add(car);
+                    return true;
+                }
+            }
+            MessageBox.Show("Customer already exist");
+            return false;
+        }
+        public bool DeleteCarFromDatabase(Car car)
+        {
+            if (CarExistInRepo(car))
+            {
+                if (CarRepository.DeleteCar(car))
+                {
+                    Cars.Remove(car);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

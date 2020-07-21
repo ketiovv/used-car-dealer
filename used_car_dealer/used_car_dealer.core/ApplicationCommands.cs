@@ -14,9 +14,6 @@ namespace used_car_dealer.core
     public class ApplicationCommands: IApplicationCommands
     {
         private CompositeCommand _navigateCommand = new CompositeCommand();
-        public CompositeCommand NavigateCommand
-        {
-            get { return _navigateCommand; }
-        }
+        public CompositeCommand NavigateCommand => _navigateCommand;
     }
 }

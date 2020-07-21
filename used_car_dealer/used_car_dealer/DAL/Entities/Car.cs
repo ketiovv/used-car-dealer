@@ -83,12 +83,12 @@ namespace used_car_dealer.DAL.Entities
 
         public string ToInsert()
         {
-            return $"";
+            return $"({ModelId}, {Price}, '{Type}', '{Color}', {Mileage}, {YearFrom}, {EngineCapacity}, '{Fuel}', {Power}, '{Transmission}');";
         }
 
         public override string ToString()
         {
-            return $"{Id}";
+            return $"Car with id {Id}";
         }
 
         #endregion

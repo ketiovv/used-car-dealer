@@ -76,11 +76,7 @@ namespace used_car_dealer.DAL.Entities
 
         public override string ToString()
         {
-            //return $"{Name} {LastName} z {City}";
-
-            //temporary, check if class is have good params
-            return $"{Id} - {Name} {LastName} | {Pesel} |  {BirthDate} | {PhoneNumber} | {PostalCode} " +
-                    $"{City}, {Street} {HomeNumber}";
+            return $"{Name} {LastName} from {City}";
         }
         public override bool Equals(object obj)
         {

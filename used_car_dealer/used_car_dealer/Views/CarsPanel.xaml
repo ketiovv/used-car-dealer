@@ -5,8 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:used_car_dealer.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:core="clr-namespace:used_car_dealer.core;assembly=used_car_dealer.core"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type System:Enum}"
+                                x:Key="CarType">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:CarType"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type System:Enum}"
+                                x:Key="CarFuel">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:CarFuel"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type System:Enum}"
+                                x:Key="CarTransmission">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:CarTransmission"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
     <StackPanel>
         <TextBlock Text="Cars" 
                  FontSize="30" 
@@ -15,7 +49,7 @@
 
         <DataGrid MaxHeight="205" Margin="15"
                   ItemsSource="{Binding Cars}"
-                  SelectedItem="{Binding SelectedCars}"
+                  SelectedItem="{Binding SelectedCar}"
                   IsReadOnly="True"
                   GridLinesVisibility="None">
 
@@ -31,49 +65,53 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Manufacturer" Width="130"/>
-                    <ComboBox Width="250"/>
+                    <ComboBox Width="250" ItemsSource="{Binding Manufacturers, UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding SelectedManufacturer, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Model" Width="130"/>
-                    <ComboBox Width="250"/>
+                    <ComboBox Width="250" ItemsSource="{Binding Models, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedModel, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Price" Width="130"/>
-                    <TextBox Width="250"/>
+                    <TextBox Width="250" Text="{Binding Price}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Type" Width="130"/>
-                    <ComboBox Width="250" />
+                    <ComboBox Width="250" ItemsSource="{Binding Source={StaticResource CarType}}"
+                              SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Color" Width="130"/>
-                    <TextBox Width="250" />
+                    <TextBox Width="250" Text="{Binding Color}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Mileage [km]" Width="130"/>
-                    <TextBox Width="250" />
+                    <TextBox Width="250" Text="{Binding Mileage}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Year from" Width="130"/>
-                    <TextBox Width="250" />
+                    <TextBox Width="250" Text="{Binding YearFrom}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Engine capacity [cm3]" Width="130"/>
-                    <TextBox Width="250" />
+                    <TextBox Width="250" Text="{Binding EngineCapacity}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Fuel" Width="130"/>
-                    <ComboBox Width="250" />
+                    <ComboBox Width="250" ItemsSource="{Binding Source={StaticResource CarFuel}}"
+                              SelectedItem="{Binding Fuel, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
-                
+
             </StackPanel>
 
 
@@ -81,12 +119,13 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
                     <Label Content="Power [km]" Width="130"/>
-                    <TextBox Width="250" />
+                    <TextBox Width="250" Text="{Binding Power}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 61">
                     <Label Content="Transmission" Width="130"/>
-                    <ComboBox Width="250" />
+                    <ComboBox Width="250" ItemsSource="{Binding Source={StaticResource CarTransmission}}"
+                              SelectedItem="{Binding Transmission, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <Button Content="Add car" Width="380" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" 

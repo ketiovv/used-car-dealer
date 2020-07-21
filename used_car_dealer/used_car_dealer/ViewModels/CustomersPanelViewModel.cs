@@ -104,6 +104,7 @@ namespace used_car_dealer.ViewModels
             _customers = _model.Customers;
 
             _addCustomerCommand = new DelegateCommand(AddCustomer, AddCustomerPossible);
+            _editCustomerCommand = new DelegateCommand(EditCustomer, EditCustomerPossible);
             _deleteCustomerCommand = new DelegateCommand(DeleteCustomer, DeleteCustomerPossible);
 
         }
@@ -124,6 +125,12 @@ namespace used_car_dealer.ViewModels
             get => _addCustomerCommand;
             set => SetProperty(ref _addCustomerCommand, value);
         }
+        private ICommand _editCustomerCommand;
+        public ICommand EditCustomerCommand
+        {
+            get => _editCustomerCommand;
+            set => SetProperty(ref _editCustomerCommand, value);
+        }
         private ICommand _deleteCustomerCommand;
         public ICommand DeleteCustomerCommand
         {
@@ -136,11 +143,15 @@ namespace used_car_dealer.ViewModels
             var cust = new Customer(Name, LastName, Pesel, PhoneNumber, PostalCode, City, Street, HomeNumber, BirthDate);
             if (_model.AddCustomerToDatabase(cust))
             {
-                //ClearForm();
+                ClearForm();
                 MessageBox.Show("new customer in database!");
             }
         }
 
+        public void EditCustomer()
+        {
+            MessageBox.Show("Not implemented");
+        }
         public void DeleteCustomer()
         {
             var cust = SelectedCustomer;
@@ -155,6 +166,10 @@ namespace used_car_dealer.ViewModels
             return true;
         }
 
+        public bool EditCustomerPossible()
+        {
+            return false;
+        }
         public bool DeleteCustomerPossible()
         {
             return true;

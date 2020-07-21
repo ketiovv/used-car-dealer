@@ -13,15 +13,15 @@ namespace used_car_dealer.ViewModels
         private Deal _selectedDeal;
         public Deal SelectedDeal
         {
-            get { return _selectedDeal; }
-            set { SetProperty(ref _selectedDeal, value); }
+            get => _selectedDeal;
+            set => SetProperty(ref _selectedDeal, value);
         }
 
         private ObservableCollection<Deal> _deals;
         public ObservableCollection<Deal> Deals
         {
-            get { return _deals; }
-            set { SetProperty(ref _deals, value); }
+            get => _deals;
+            set => SetProperty(ref _deals, value);
         }
 
         public DealsPanelViewModel(IApplicationCommands applicationCommands)
@@ -36,8 +36,8 @@ namespace used_car_dealer.ViewModels
 
         public IApplicationCommands ApplicationCommands
         {
-            get { return _applicationCommands; }
-            set { SetProperty(ref _applicationCommands, value); }
+            get => _applicationCommands;
+            set => SetProperty(ref _applicationCommands, value);
         }
 
 

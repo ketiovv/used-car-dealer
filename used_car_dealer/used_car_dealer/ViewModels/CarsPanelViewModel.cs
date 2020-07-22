@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Prism.Mvvm;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -16,6 +18,8 @@ namespace used_car_dealer.ViewModels
     public class CarsPanelViewModel: BindableBase
     {
         private Model _model;
+
+        #region Properties
 
         private Car _selectedCar;
         public Car SelectedCar
@@ -33,41 +37,39 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private string _selectedManufacturer;// = "<select>";
-        public string SelectedManufacturer
+        private CarManufacturer _selectedManufacturer;
+        public CarManufacturer SelectedManufacturer
         {
             get => _selectedManufacturer;
             set => SetProperty(ref _selectedManufacturer, value, RefreshModels);
         }
 
 
-        private List<string> _manufacturers = new List<string>();
-        public List<string> Manufacturers
+        private ObservableCollection<CarManufacturer> _manufacturers;
+        public ObservableCollection<CarManufacturer> Manufacturers
         {
             get => _manufacturers;
             set => SetProperty(ref _manufacturers, value);
         }
 
 
-        private string _selectedModel;// = "<select manufacturer>";
-
-        public string SelectedModel
+        private CarModel _selectedModel;
+        public CarModel SelectedModel
         {
             get => _selectedModel;
             set => SetProperty(ref (_selectedModel), value);
         }
 
 
-        private List<string> _models = new List<string>();
-        public List<string> Models
+        private ObservableCollection<CarModel> _models = new ObservableCollection<CarModel>();
+        public ObservableCollection<CarModel> Models
         {
             get => _models;
             set => SetProperty(ref _models, value);
         }
 
-        // model
 
-        private uint _price = 20000;
+        private uint _price;
         public uint Price
         {
             get => _price;
@@ -75,7 +77,7 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private CarType _type = CarType.hatchback;
+        private CarType _type;
         public CarType Type
         {
             get => _type;
@@ -83,7 +85,7 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private string _color = "black";
+        private string _color;
         public string Color
         {
             get => _color;
@@ -91,7 +93,7 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private uint _mileage = 150000;
+        private uint _mileage;
         public uint Mileage
         {
             get => _mileage;
@@ -99,7 +101,7 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private uint _yearFrom = 2010;
+        private uint _yearFrom;
         public uint YearFrom
         {
             get => _yearFrom;
@@ -107,7 +109,7 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private uint _engineCapacity = 1600;
+        private uint _engineCapacity;
         public uint EngineCapacity
         {
             get => _engineCapacity;
@@ -115,7 +117,7 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private CarFuel _fuel = CarFuel.petrol;
+        private CarFuel _fuel;
         public CarFuel Fuel
         {
             get => _fuel;
@@ -123,7 +125,7 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private uint _power = 120;
+        private uint _power;
         public uint Power
         {
             get => _power;
@@ -131,14 +133,16 @@ namespace used_car_dealer.ViewModels
         }
 
 
-        private CarTransmission _transmission = CarTransmission.manual;
+        private CarTransmission _transmission;
         public CarTransmission Transmission
         {
             get => _transmission;
             set => SetProperty(ref _transmission, value);
         }
 
+        #endregion
 
+        #region Ctor
 
         public CarsPanelViewModel(IApplicationCommands applicationCommands)
         {
@@ -146,17 +150,17 @@ namespace used_car_dealer.ViewModels
             _applicationCommands = applicationCommands;
 
             _cars = _model.Cars;
-            //_manufacturers.Add("<select>");
-            //_models.Add("<select manufacturer>");
-            foreach (var manufacturer in _model.CarManufacturers)
-            {
-                _manufacturers.Add(manufacturer.Name);
-            }
+
+            _manufacturers = _model.CarManufacturers;
 
             _addCarCommand = new DelegateCommand(AddCar, AddCarPossible);
             _editCarCommand = new DelegateCommand(EditCar, EditCarPossible);
             _deleteCarCommand = new DelegateCommand(DeleteCar, DeleteCarPossible);
         }
+
+        #endregion
+
+        #region Commands
 
         private IApplicationCommands _applicationCommands;
 
@@ -185,13 +189,17 @@ namespace used_car_dealer.ViewModels
             set => SetProperty(ref _deleteCarCommand, value);
         }
 
+        #endregion
+
+        #region Methods
+
         public void AddCar()
         {
-            var car = new Car(Convert.ToUInt32(FindModelByName(SelectedModel).Id), Price, Type, Color,
+            var car = new Car(Convert.ToUInt32(SelectedModel.Id), Price, Type, Color,
                 Mileage, YearFrom, EngineCapacity, Fuel, Power, Transmission);
             if (_model.AddCarToDatabase(car))
             {
-                //    ClearForm();
+                ClearForm();
                 MessageBox.Show("new car in database!");
             }
         }
@@ -209,72 +217,29 @@ namespace used_car_dealer.ViewModels
             }
         }
 
-        public bool AddCarPossible()
-        {
-            return true;
-        }
+        public bool AddCarPossible() => true;
 
-        public bool EditCarPossible()
-        {
-            return false;
-        }
-        public bool DeleteCarPossible()
-        {
-            return true;
-        }
+        public bool EditCarPossible() => false;
+
+        public bool DeleteCarPossible() => true;
 
         public void ClearForm()
         {
+            SelectedManufacturer = Manufacturers.First(); SelectedModel = null; Price = 0; Type = CarType.coupe; Color = string.Empty; Mileage = 0;
+            YearFrom = 0; EngineCapacity = 0; Fuel = CarFuel.diesel; Power = 0; Transmission = CarTransmission.automatic;
 
         }
         private void RefreshModels()
         {
             Models.Clear();
-            //Models.Add("<select>");
-            //SelectedModel = "<select>";
-
-            CarManufacturer currentManufacturer = FindManufacturerByName(SelectedManufacturer);
-
             foreach (var model in _model.CarModels)
             {
-                if (model.ManufacturerId == currentManufacturer.Id)
-                    Models.Add(model.Name);
+                if (model.ManufacturerId == SelectedManufacturer.Id)
+                    Models.Add(model);
             }
-
-        }
-        //private void DeleteDefaultSelector()
-        //{
-        //    Models.Remove("<select>");
-        //}
-
-        private CarManufacturer FindManufacturerByName(string name)
-        {
-            CarManufacturer appropriateManufacturer = null;
-            foreach (var manufacturer in _model.CarManufacturers)
-            {
-                if (manufacturer.Name.Equals(name))
-                {
-                    appropriateManufacturer = manufacturer;
-                    return appropriateManufacturer;
-                }
-
-            }
-            return null;
         }
 
-        private CarModel FindModelByName(string name)
-        {
-            CarModel appropriateModel = null;
-            foreach (var model in _model.CarModels)
-            {
-                if (model.Name.Equals(name))
-                {
-                    appropriateModel = model;
-                    return appropriateModel;
-                }
-            }
+        #endregion
 
-            return null;
-        }
     }
 }

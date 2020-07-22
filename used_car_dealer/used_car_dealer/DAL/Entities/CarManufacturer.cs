@@ -15,18 +15,9 @@ namespace used_car_dealer.DAL.Entities
             Origin = reader["manufacturer_origin"].ToString();
         }
 
-        //public CarManufacturer(string name, string origin)
-        //{
-        //    Id = null;
-        //    Name = name.Trim();
-        //    Origin = origin.Trim();
-        //}
-
-        //public CarManufacturer(CarManufacturer carManufacturer)
-        //{
-        //    Id = carManufacturer.Id;
-        //    Name = carManufacturer.Name;
-        //    Origin = carManufacturer.Origin;
-        //}
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

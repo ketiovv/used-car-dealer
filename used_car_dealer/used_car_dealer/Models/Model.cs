@@ -83,7 +83,6 @@ namespace used_car_dealer.Models
         /// CAR
         /// </summary>
         public bool CarExistInRepo(Car car) => Cars.Contains(car);
-
         public bool AddCarToDatabase(Car car)
         {
             if (!CarExistInRepo(car))
@@ -105,6 +104,35 @@ namespace used_car_dealer.Models
                 {
                     Cars.Remove(car);
                     return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// DEAL
+        /// </summary>
+        public bool DealExistInRepo(Deal deal) => Deals.Contains(deal);
+        public bool AddDealToDatabase(Deal deal)
+        {
+            if (!DealExistInRepo(deal))
+            {
+                if (DealRepository.AddDeal(deal))
+                {
+                    Deals.Add(deal);
+                    return true;
+                }
+            }
+            MessageBox.Show("Customer already exist");
+            return false;
+        }
+        public bool DeleteDealFromDatabase(Deal deal)
+        {
+            if (DealExistInRepo(deal))
+            {
+                if (DealRepository.DeleteDeal(deal))
+                {
+                    Deals.Remove(deal);
                 }
             }
             return false;

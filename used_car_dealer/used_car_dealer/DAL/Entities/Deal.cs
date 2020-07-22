@@ -11,7 +11,7 @@ namespace used_car_dealer.DAL.Entities
     public class Deal
     {
         #region Properties
-        public uint Id { get; set; }
+        public uint? Id { get; set; }
         public DealType Type { get; set; }
         public uint Amount { get; set; }
         public string Date { get; set; }
@@ -34,9 +34,9 @@ namespace used_car_dealer.DAL.Entities
             CarId = uint.Parse(reader["deal_car_id"].ToString());
         }
 
-        public Deal(uint id, DealType dealType, uint amount, string date, uint customerId, uint carId)
+        public Deal(DealType dealType, uint amount, string date, uint customerId, uint carId)
         {
-            Id = id;
+            Id = null;
             Type = dealType;
             Amount = amount;
             Date = date;
@@ -53,5 +53,10 @@ namespace used_car_dealer.DAL.Entities
             CarId = deal.CarId;
         }
         #endregion
+
+        public string ToInsert()
+        {
+            return $"('{Type}',{Amount},'{Date}',{CustomerId},{CarId});";
+        }
     }
 }

@@ -5,8 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:used_car_dealer.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:core="clr-namespace:used_car_dealer.core;assembly=used_car_dealer.core"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type System:Enum}"
+                                x:Key="DealType">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:DealType"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+
+        </ResourceDictionary>
+    </UserControl.Resources>
     <StackPanel>
         <TextBlock Text="Deals" 
                  FontSize="30" 
@@ -20,6 +36,61 @@
                   GridLinesVisibility="None">
 
         </DataGrid>
-        <Button Content="Back" Command="{Binding ApplicationCommands.NavigateCommand}" CommandParameter="MainMenu"/>
+
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Type" Width="100"/>
+                    <ComboBox Width="250" ItemsSource="{Binding Source={StaticResource DealType}}"
+                              SelectedItem="{Binding SelectedDealType, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Amount" Width="100"/>
+                    <TextBox Width="250" Text="{Binding Amount}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Date" Width="100"/>
+                    <TextBox Width="250" Text="{Binding Date}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Customer" Width="100"/>
+                    <ComboBox Width="250" ItemsSource="{Binding Customers, UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding SelectedCustomer, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 3">
+                    <Label Content="Car" Width="100"/>
+                    <ComboBox Width="250" ItemsSource="{Binding Cars, UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding SelectedCar, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="1">
+
+                <Button Content="Add deal" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" 
+                        Command="{Binding AddDealCommand}"/>
+                <Button Content="Edit deal" Width="350" HorizontalAlignment="Left" Margin="0 0 0 3" Height="26" 
+                        Command="{Binding EditDealCommand}"/>
+                <Button Content="Delete deal" Width="350" HorizontalAlignment="Left" Margin="0 0 0 148" Height="26"
+                        Command="{Binding DeleteDealCommand}"/>
+                <Button Content="Go to menu" Width="350" HorizontalAlignment="Left" Height="26" 
+                        Command="{Binding ApplicationCommands.NavigateCommand}" CommandParameter="MainMenu"/>
+
+            </StackPanel>
+
+        </Grid>
+
     </StackPanel>
 </UserControl>
